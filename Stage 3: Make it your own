@@ -89,7 +89,7 @@ public class Main {
         Main main = new Main();
 
         main.setNumberOfCards(main.scanner.nextInt());
-        main.scanner.nextLine(); // Workaround that I cannot evade
+        main.scanner.nextLine(); // Workaround that I cannot evade (Het is wel degelijk mogelijk JBE)
 
         main.setFlashCardList();
 
