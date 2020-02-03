@@ -1,0 +1,103 @@
+package flashcards;
+import java.util.Scanner;
+
+class FlashCard {
+    private String card;
+    private String definition;
+
+    FlashCard(String card, String definition) {
+        this.card = card;
+        this.definition = definition;
+    }
+
+    String getCard() {
+        return card;
+    }
+
+    String getDefinition() {
+        return definition;
+    }
+}
+
+class FlashCardAnswer {
+    private String answer;
+
+    FlashCardAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    String getAnswer() {
+        return answer;
+    }
+}
+
+public class Main {
+    private int numberOfCards;
+    private Scanner scanner;
+
+    private FlashCard[] flashCardList;
+
+    private Main() {
+        this.scanner = new Scanner(System.in);
+    }
+
+    private void setNumberOfCards(int n) {
+        numberOfCards = n;
+    }
+
+    private int getNumberOfCards() {
+        return numberOfCards;
+    }
+
+    private void setFlashCardList() {
+        this.flashCardList = new FlashCard[numberOfCards];
+    }
+
+    private void fillAllFlashCardsInList() {
+        for (int i = 0; i < getNumberOfCards(); i++) {
+            System.out.println("The card #" + i + ":");
+            String cardName = scanner.nextLine();
+            System.out.println("The definition of the card #" + i + ":");
+            String definition = scanner.nextLine();
+
+            FlashCard flashCard = new FlashCard(cardName, definition);
+
+            flashCardList[i] = flashCard;
+        }
+    }
+
+    private void runFlashCardGame() {
+        for (int i = 0; i < getNumberOfCards(); i++) {
+
+            System.out.println("Print the definition of \"" + flashCardList[i].getCard() + "\":");
+            FlashCardAnswer flashCardAnswer = new FlashCardAnswer(scanner.nextLine());
+
+            if (flashCardAnswer.getAnswer().equals(flashCardList[i].getDefinition())) {
+                System.out.println("Correct answer.");
+            } else {
+                System.out.println("Wrong answer. The correct one is \"" + flashCardList[i].getDefinition() + "\".");
+            }
+        }
+    }
+
+    private void closeScanner() {
+        scanner.close();
+    }
+
+    public static void main(String[] args) {
+
+        Main main = new Main();
+
+        main.setNumberOfCards(main.scanner.nextInt());
+        main.scanner.nextLine(); // Workaround that I cannot evade
+
+        main.setFlashCardList();
+
+        main.fillAllFlashCardsInList();
+
+        main.runFlashCardGame();
+
+        main.closeScanner();
+
+    }
+}
