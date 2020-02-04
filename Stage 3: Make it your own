@@ -19,7 +19,7 @@ class FlashCard {
     }
 }
 
-class FlashCardAnswer {
+class FlashCardAnswer { // Probeer dit te combineren met FlashCard (JBE)
     private String answer;
 
     FlashCardAnswer(String answer) {
@@ -41,7 +41,7 @@ public class Main {
         this.scanner = new Scanner(System.in);
     }
 
-    private void setNumberOfCards(int n) {
+    private void setNumberOfCards(int n) { // Probeer de setter te vermijden (JBE)
         numberOfCards = n;
     }
 
@@ -89,9 +89,9 @@ public class Main {
         Main main = new Main();
 
         main.setNumberOfCards(main.scanner.nextInt());
-        main.scanner.nextLine(); // Workaround that I cannot evade
+        main.scanner.nextLine(); // Workaround that I cannot evade (Het is wel degelijk mogelijk JBE)
 
-        main.setFlashCardList();
+        main.setFlashCardList(); // Deze methode is niet nodig (JBE)
 
         main.fillAllFlashCardsInList();
 
