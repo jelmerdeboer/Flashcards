@@ -4,6 +4,7 @@ import java.util.Scanner;
 class FlashCard {
     private String card;
     private String definition;
+    private String answer;
 
     FlashCard(String card, String definition) {
         this.card = card;
@@ -17,12 +18,8 @@ class FlashCard {
     String getDefinition() {
         return definition;
     }
-}
 
-class FlashCardAnswer { // Probeer dit te combineren met FlashCard (JBE)
-    private String answer;
-
-    FlashCardAnswer(String answer) {
+    void setAnswer(String answer) {
         this.answer = answer;
     }
 
@@ -32,17 +29,15 @@ class FlashCardAnswer { // Probeer dit te combineren met FlashCard (JBE)
 }
 
 public class Main {
-    private int numberOfCards;
+    private static int numberOfCards;
     private Scanner scanner;
 
     private FlashCard[] flashCardList;
 
     private Main() {
         this.scanner = new Scanner(System.in);
-    }
-
-    private void setNumberOfCards(int n) { // Probeer de setter te vermijden (JBE)
-        numberOfCards = n;
+        numberOfCards = Integer.parseInt(scanner.nextLine());
+        setFlashCardList();
     }
 
     private int getNumberOfCards() {
@@ -70,9 +65,9 @@ public class Main {
         for (int i = 0; i < getNumberOfCards(); i++) {
 
             System.out.println("Print the definition of \"" + flashCardList[i].getCard() + "\":");
-            FlashCardAnswer flashCardAnswer = new FlashCardAnswer(scanner.nextLine());
+            flashCardList[i].setAnswer(scanner.nextLine());
 
-            if (flashCardAnswer.getAnswer().equals(flashCardList[i].getDefinition())) {
+            if (flashCardList[i].getAnswer().equals(flashCardList[i].getDefinition())) {
                 System.out.println("Correct answer.");
             } else {
                 System.out.println("Wrong answer. The correct one is \"" + flashCardList[i].getDefinition() + "\".");
@@ -87,11 +82,6 @@ public class Main {
     public static void main(String[] args) {
 
         Main main = new Main();
-
-        main.setNumberOfCards(main.scanner.nextInt());
-        main.scanner.nextLine(); // Workaround that I cannot evade (Het is wel degelijk mogelijk JBE)
-
-        main.setFlashCardList(); // Deze methode is niet nodig (JBE)
 
         main.fillAllFlashCardsInList();
 
