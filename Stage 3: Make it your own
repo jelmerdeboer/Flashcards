@@ -29,7 +29,7 @@ class FlashCard {
 }
 
 public class Main {
-    private static int numberOfCards;
+    private static int numberOfCards; // Deze mag niet static zijn. Wat als je meerdere spelletjes tegelijk wilt doen?
     private Scanner scanner;
 
     private FlashCard[] flashCardList;
@@ -49,7 +49,7 @@ public class Main {
     }
 
     private void fillAllFlashCardsInList() {
-        for (int i = 0; i < getNumberOfCards(); i++) {
+        for (int i = 0; i < getNumberOfCards(); i++) { // in-class gebruik altijd op de variabele, geen getter nodig
             System.out.println("The card #" + i + ":");
             String cardName = scanner.nextLine();
             System.out.println("The definition of the card #" + i + ":");
@@ -65,6 +65,9 @@ public class Main {
         for (int i = 0; i < getNumberOfCards(); i++) {
 
             System.out.println("Print the definition of \"" + flashCardList[i].getCard() + "\":");
+            
+            // Probeer de logica van het antwoorden is in de FlashCard te verwerken. Netter en maakt het gebruik van 
+            // set en get answer onnodig.
             flashCardList[i].setAnswer(scanner.nextLine());
 
             if (flashCardList[i].getAnswer().equals(flashCardList[i].getDefinition())) {
